@@ -55,26 +55,20 @@ function App() {
 
 function HomePage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-[#f9fafb] to-[#eef2ff] p-6">
-      <section className="w-full max-w-[720px] rounded-[20px] border border-[#dfe3f3] bg-white p-12 px-10 text-left shadow-[0_16px_40px_rgba(15,23,42,0.08)] max-[1024px]:p-7 max-[1024px]:px-5">
-        <p className="mb-3 text-[0.78rem] font-bold uppercase tracking-[0.12em] text-[#4f46e5]">Caça ao Tesouro</p>
-        <h1 className="my-8 text-[clamp(2.1rem,4vw,3.2rem)] leading-[1.1] tracking-[-0.04em] text-[#0f172a] max-[1024px]:my-5 max-[1024px]:text-4xl">
+    <main className="flex min-h-screen items-center justify-center page-main p-6">
+      <section className="card-section w-full max-w-[720px] p-12 px-10 text-left max-[1024px]:p-7 max-[1024px]:px-5">
+        <p className="section-kicker mb-3">Caça ao Tesouro</p>
+        <h1 className="heading my-8 max-[1024px]:my-5 max-[1024px]:text-4xl">
           Dashboard do evento e QR público
         </h1>
-        <p className="mt-3 max-w-[52ch] text-[1.05rem] text-[#475569]">
+        <p className="section-description">
           A experiência pública leva o participante ao QR e o painel administrativo acompanha os acessos em tempo real.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link
-            to="/q/QR001"
-            className="inline-flex min-h-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#4f46e5] to-[#7c3aed] px-[18px] font-bold text-white no-underline transition-transform duration-200 hover:-translate-y-px"
-          >
+          <Link to="/q/QR001" className="btn-primary">
             Abrir QR demo
           </Link>
-          <Link
-            to="/admin/login"
-            className="inline-flex min-h-11 items-center justify-center rounded-xl bg-[#eef2ff] px-[18px] font-bold text-[#312e81] no-underline transition-transform duration-200 hover:-translate-y-px"
-          >
+          <Link to="/admin/login" className="btn-nav">
             Login admin
           </Link>
         </div>
@@ -145,10 +139,10 @@ function PublicQrPage({
 
   if (!qr) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#f5f7ff] p-6">
-        <section className="w-full max-w-[420px] rounded-[20px] border border-[#dfe3f3] bg-white p-7 px-6 text-center shadow-[0_16px_40px_rgba(15,23,42,0.08)]">
-          <p className="mb-3 text-[0.78rem] font-bold uppercase tracking-[0.12em] text-[#4f46e5]">QR inválido</p>
-          <h1 className="my-8 text-[clamp(2.1rem,4vw,3.2rem)] leading-[1.1] tracking-[-0.04em] text-[#0f172a] max-[1024px]:my-5 max-[1024px]:text-4xl">
+      <main className="flex min-h-screen items-center justify-center page p-6">
+        <section className="card-section w-full max-w-[420px] p-7 px-6 text-center">
+          <p className="section-kicker mb-3">QR inválido</p>
+          <h1 className="heading my-8 max-[1024px]:my-5 max-[1024px]:text-4xl">
             Este código não está ativo.
           </h1>
           <p>Verifique o QR ou solicite nova etapa ao organizador.</p>
@@ -158,21 +152,21 @@ function PublicQrPage({
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#f5f7ff] p-6">
-      <section className="w-full max-w-[420px] rounded-[20px] border border-[#dfe3f3] bg-white p-7 px-6 text-left shadow-[0_16px_40px_rgba(15,23,42,0.08)]">
-        <p className="mb-3 text-[0.78rem] font-bold uppercase tracking-[0.12em] text-[#4f46e5]">Caça ao Tesouro</p>
-        <h1 className="my-8 text-[clamp(2.1rem,4vw,3.2rem)] leading-[1.1] tracking-[-0.04em] text-[#0f172a] max-[1024px]:my-5 max-[1024px]:text-4xl">
+    <main className="flex min-h-screen items-center justify-center page p-6">
+      <section className="card-section w-full max-w-[420px] p-7 px-6 text-left">
+        <p className="section-kicker mb-3">Caça ao Tesouro</p>
+        <h1 className="heading my-8 max-[1024px]:my-5 max-[1024px]:text-4xl">
           {qr.id}
         </h1>
 
         {!registered ? (
           <>
-            <label className="mb-2 mt-[18px] block font-semibold text-[#334155]" htmlFor="team-select">
+            <label className="label-field" htmlFor="team-select">
               Selecione sua equipe
             </label>
             <select
               id="team-select"
-              className="min-h-[46px] w-full rounded-xl border border-[#d9dff4] bg-[#f8fafc] px-3"
+              className="input-field"
               value={selectedTeam}
               onChange={(event) => setSelectedTeam(event.target.value)}
             >
@@ -188,17 +182,17 @@ function PublicQrPage({
 
             <button
               type="button"
-              className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-gradient-to-br from-[#4f46e5] to-[#7c3aed] px-[18px] font-bold text-white transition-transform duration-200 hover:-translate-y-px"
+              className="mt-5 btn-primary w-full"
               onClick={handleRegister}
             >
               Confirmar participação
             </button>
 
-            {errorMessage ? <p className="mt-4 text-[0.95rem] text-[#b91c1c]">{errorMessage}</p> : null}
+            {errorMessage ? <p className="error-text">{errorMessage}</p> : null}
           </>
         ) : (
           <div className="flex flex-col gap-3 pt-1">
-            <p className="font-bold text-[#166534]">Acesso confirmado.</p>
+            <p className="success-text">Acesso confirmado.</p>
             {qr.tipo === 'dica' ? (
               <>
                 <p className="font-bold">Sintonize o canal de rádio:</p>
@@ -254,16 +248,14 @@ function AdminLoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#f5f7ff] p-6">
-      <section className="w-full max-w-[440px] rounded-[20px] border border-[#dfe3f3] bg-white p-7 px-6 shadow-[0_16px_40px_rgba(15,23,42,0.08)]">
-        <p className="mb-3 text-[0.78rem] font-bold uppercase tracking-[0.12em] text-[#4f46e5]">
-          Painel administrativo
-        </p>
-        <h1 className="my-8 text-[clamp(2.1rem,4vw,3.2rem)] leading-[1.1] tracking-[-0.04em] text-[#0f172a] max-[1024px]:my-5 max-[1024px]:text-4xl">
+    <main className="flex min-h-screen items-center justify-center page p-6">
+      <section className="card-section w-full max-w-[440px] p-7 px-6">
+        <p className="section-kicker mb-3">Painel administrativo</p>
+        <h1 className="heading my-8 max-[1024px]:my-5 max-[1024px]:text-4xl">
           Entrar
         </h1>
         <form onSubmit={handleSubmit} className="mt-2">
-          <label className="mb-2 mt-[18px] block font-semibold text-[#334155]" htmlFor="email">
+          <label className="label-field" htmlFor="email">
             E-mail
           </label>
           <input
@@ -271,10 +263,10 @@ function AdminLoginPage() {
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="min-h-[46px] w-full rounded-xl border border-[#d9dff4] bg-[#f8fafc] px-3"
+            className="input-field"
           />
 
-          <label className="mb-2 mt-[18px] block font-semibold text-[#334155]" htmlFor="password">
+          <label className="label-field" htmlFor="password">
             Senha
           </label>
           <input
@@ -282,18 +274,15 @@ function AdminLoginPage() {
             type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            className="min-h-[46px] w-full rounded-xl border border-[#d9dff4] bg-[#f8fafc] px-3"
+            className="input-field"
           />
 
-          <button
-            type="submit"
-            className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-gradient-to-br from-[#4f46e5] to-[#7c3aed] px-[18px] font-bold text-white transition-transform duration-200 hover:-translate-y-px"
-          >
+          <button type="submit" className="mt-5 btn-primary w-full">
             Entrar
           </button>
         </form>
 
-        {error ? <p className="mt-4 text-[0.95rem] text-[#b91c1c]">{error}</p> : null}
+        {error ? <p className="error-text">{error}</p> : null}
       </section>
     </main>
   )
@@ -330,7 +319,7 @@ function AdminApp({
 
   if (checking) {
     return (
-      <div className="flex min-h-screen items-center justify-center font-semibold text-[#475569]">
+      <div className="flex min-h-screen items-center justify-center font-semibold checking-text">
         Verificando acesso...
       </div>
     )
@@ -341,39 +330,28 @@ function AdminApp({
   }
 
   return (
-    <div className="grid min-h-screen grid-cols-[260px_1fr] bg-[#f8fafc] max-[740px]:grid-cols-1">
-      <aside className="border-r border-[#dfe3f3] bg-white px-5 py-6 shadow-[0_16px_40px_rgba(15,23,42,0.08)] max-[740px]:border-r-0 max-[740px]:border-b print:hidden">
+    <div className="grid min-h-screen grid-cols-[260px_1fr] panel max-[740px]:grid-cols-1">
+      <aside className="aside-nav max-[740px]:border-r-0 max-[740px]:border-b print:hidden">
         <div>
-          <p className="mb-3 text-[0.78rem] font-bold uppercase tracking-[0.12em] text-[#4f46e5]">
-            Admin
-          </p>
-          <h2 className="mb-2 text-2xl leading-[1.18] tracking-[-0.01em] text-[#0f172a] max-[1024px]:text-xl">
+          <p className="section-kicker mb-3">Admin</p>
+          <h2 className="mb-2 text-2xl leading-[1.18] tracking-[-0.01em] text-heading max-[1024px]:text-xl">
             Caça ao Tesouro
           </h2>
         </div>
 
         <nav className="mt-6 flex flex-col gap-3">
-          <Link
-            to="/admin"
-            className="rounded-[10px] bg-[#f1f5f9] px-3 py-2.5 font-semibold text-[#1e293b] no-underline"
-          >
+          <Link to="/admin" className="nav-link">
             Dashboard
           </Link>
-          <Link
-            to="/admin/qrcodes"
-            className="rounded-[10px] bg-[#f1f5f9] px-3 py-2.5 font-semibold text-[#1e293b] no-underline"
-          >
+          <Link to="/admin/qrcodes" className="nav-link">
             QR Codes
           </Link>
-          <Link
-            to="/admin/qrcodes/print"
-            className="rounded-[10px] bg-[#f1f5f9] px-3 py-2.5 font-semibold text-[#1e293b] no-underline"
-          >
+          <Link to="/admin/qrcodes/print" className="nav-link">
             Impressão
           </Link>
           <button
             type="button"
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[#dadfea] bg-transparent px-[18px] font-bold text-[#475569] transition-transform duration-200 hover:-translate-y-px"
+            className="btn-outline"
             onClick={async () => {
               if (auth) {
                 await signOut(auth)
@@ -419,10 +397,8 @@ function AdminDashboardPage({ qrPublic, accesses }: { qrPublic: QrDocument[]; ac
     <>
       <header className="mb-6 print:hidden">
         <div>
-          <p className="mb-3 text-[0.78rem] font-bold uppercase tracking-[0.12em] text-[#4f46e5]">
-            Visão geral
-          </p>
-          <h1 className="my-8 text-[clamp(2.1rem,4vw,3.2rem)] leading-[1.1] tracking-[-0.04em] text-[#0f172a] max-[1024px]:my-5 max-[1024px]:text-4xl">
+          <p className="section-kicker mb-3">Visão geral</p>
+          <h1 className="heading my-8 max-[1024px]:my-5 max-[1024px]:text-4xl">
             Dashboard
           </h1>
         </div>
@@ -432,19 +408,17 @@ function AdminDashboardPage({ qrPublic, accesses }: { qrPublic: QrDocument[]; ac
         {cards.map(({ qr, lastAccess }) => (
           <article
             key={qr.id}
-            className={`rounded-[20px] border border-[#dfe3f3] border-l-[6px] bg-white p-5 shadow-[0_16px_40px_rgba(15,23,42,0.08)] ${lastAccess ? 'border-l-[#22c55e]' : 'border-l-[#cbd5e1]'}`}
+            className={`card-item border-l-[6px] p-5 ${lastAccess ? 'border-l-success' : 'border-l-slate'}`}
           >
             <div className="flex items-center justify-between gap-2">
-              <span className="inline-flex rounded-full bg-[#eef2ff] px-2.5 py-1.5 text-xs font-bold text-[#312e81]">
-                {qr.id}
-              </span>
+              <span className="badge-id text-xs">{qr.id}</span>
               <span
-                className={`inline-flex items-center justify-center rounded-full px-2.5 py-1.5 text-xs font-bold ${lastAccess ? 'bg-green-100 text-green-800' : 'bg-slate-200 text-slate-700'}`}
+                className={`status-badge ${lastAccess ? 'status-badge-active' : 'status-badge-idle'}`}
               >
                 {lastAccess ? 'Acessado' : 'Aguardando'}
               </span>
             </div>
-            <h3 className="text-[1.1rem] text-[#0f172a]">
+            <h3 className="text-[1.1rem] text-heading">
               {qr.tipo === 'dica' ? 'Dica' : 'Meme'}
             </h3>
             {lastAccess ? (
@@ -455,7 +429,7 @@ function AdminDashboardPage({ qrPublic, accesses }: { qrPublic: QrDocument[]; ac
               <p>Sem acessos registrados ainda.</p>
             )}
             {lastAccess && qr.tipo === 'dica' ? (
-              <p className="mt-3 rounded-[10px] border border-[#fcd34d] bg-[#fef3c7] px-3 py-2.5 text-[#92400e]">
+              <p className="mt-3 warning-card px-3 py-2.5">
                 Transmitir no {qr.canalRadio ?? 'Canal'} para {lastAccess.equipeNome}
               </p>
             ) : null}
@@ -463,15 +437,15 @@ function AdminDashboardPage({ qrPublic, accesses }: { qrPublic: QrDocument[]; ac
         ))}
       </section>
 
-      <section className="mt-7 rounded-[20px] border border-[#dfe3f3] bg-white p-5 shadow-[0_16px_40px_rgba(15,23,42,0.08)] print:hidden">
-        <h2 className="mb-2 text-2xl leading-[1.18] tracking-[-0.01em] text-[#0f172a] max-[1024px]:text-xl">
+      <section className="mt-7 card-section p-5 print:hidden">
+        <h2 className="mb-2 text-2xl leading-[1.18] tracking-[-0.01em] text-heading max-[1024px]:text-xl">
           Últimos acessos
         </h2>
         <ul className="m-0 grid list-none gap-3 p-0">
           {recentAccesses.map((entry) => (
             <li
               key={entry.id}
-              className="flex flex-wrap justify-between gap-3 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-3 py-2.5"
+              className="list-item flex flex-wrap justify-between gap-3 px-3 py-2.5"
             >
               <strong>{entry.equipeNome}</strong>
               <span>{entry.qrId}</span>
@@ -563,29 +537,26 @@ function AdminQrPage({
         </div>
       </header>
 
-      <form
-        className="max-w-[560px] rounded-[20px] border border-[#dfe3f3] bg-white p-6 shadow-[0_16px_40px_rgba(15,23,42,0.08)] print:hidden"
-        onSubmit={handleSubmit}
-      >
+      <form className="card-section max-w-[560px] p-6 print:hidden" onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="mb-2 mt-[18px] block font-semibold text-[#334155]" htmlFor="qrId">
+          <label className="label-field" htmlFor="qrId">
             ID do QR
           </label>
           <input
             id="qrId"
-            className="min-h-[46px] w-full rounded-xl border border-[#d9dff4] bg-[#f8fafc] px-3"
+            className="input-field"
             value={form.id}
             onChange={(event) => handleChange('id', event.target.value)}
           />
         </div>
 
         <div className="mb-3">
-          <label className="mb-2 mt-[18px] block font-semibold text-[#334155]" htmlFor="tipo">
+          <label className="label-field" htmlFor="tipo">
             Tipo
           </label>
           <select
             id="tipo"
-            className="min-h-[46px] w-full rounded-xl border border-[#d9dff4] bg-[#f8fafc] px-3"
+            className="input-field"
             value={form.tipo}
             onChange={(event) => handleChange('tipo', event.target.value as 'dica' | 'meme')}
           >
@@ -597,24 +568,24 @@ function AdminQrPage({
         {form.tipo === 'dica' ? (
           <>
             <div className="mb-3">
-              <label className="mb-2 mt-[18px] block font-semibold text-[#334155]" htmlFor="canalRadio">
+              <label className="label-field" htmlFor="canalRadio">
                 Canal de rádio
               </label>
               <input
                 id="canalRadio"
-                className="min-h-[46px] w-full rounded-xl border border-[#d9dff4] bg-[#f8fafc] px-3"
+                className="input-field"
                 value={form.canalRadio}
                 onChange={(event) => handleChange('canalRadio', event.target.value)}
               />
             </div>
 
             <div className="mb-3">
-              <label className="mb-2 mt-[18px] block font-semibold text-[#334155]" htmlFor="dicaTexto">
+              <label className="label-field" htmlFor="dicaTexto">
                 Texto da dica
               </label>
               <textarea
                 id="dicaTexto"
-                className="min-h-[120px] w-full resize-y rounded-xl border border-[#d9dff4] bg-[#f8fafc] p-3"
+                className="input-field min-h-[120px] resize-y p-3"
                 value={form.dicaTexto}
                 onChange={(event) => handleChange('dicaTexto', event.target.value)}
               />
@@ -622,12 +593,12 @@ function AdminQrPage({
           </>
         ) : (
           <div className="mb-3">
-            <label className="mb-2 mt-[18px] block font-semibold text-[#334155]" htmlFor="memeUrl">
+            <label className="label-field" htmlFor="memeUrl">
               URL do meme
             </label>
             <input
               id="memeUrl"
-              className="min-h-[46px] w-full rounded-xl border border-[#d9dff4] bg-[#f8fafc] px-3"
+              className="input-field"
               value={form.memeUrl}
               onChange={(event) => handleChange('memeUrl', event.target.value)}
             />
@@ -635,18 +606,18 @@ function AdminQrPage({
         )}
 
         <div className="mb-3">
-          <label className="mb-2 mt-[18px] block font-semibold text-[#334155]" htmlFor="local">
+          <label className="label-field" htmlFor="local">
             Local/descrição
           </label>
           <input
             id="local"
-            className="min-h-[46px] w-full rounded-xl border border-[#d9dff4] bg-[#f8fafc] px-3"
+            className="input-field"
             value={form.local}
             onChange={(event) => handleChange('local', event.target.value)}
           />
         </div>
 
-        <label className="mt-2 inline-flex items-center gap-2 text-[#1e293b]">
+        <label className="mt-2 inline-flex items-center gap-2 text-nav">
           <input
             type="checkbox"
             checked={form.ativo}
@@ -655,15 +626,12 @@ function AdminQrPage({
           QR ativo
         </label>
 
-        <button
-          type="submit"
-          className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-gradient-to-br from-[#4f46e5] to-[#7c3aed] px-[18px] font-bold text-white transition-transform duration-200 hover:-translate-y-px"
-        >
+        <button type="submit" className="mt-5 btn-primary w-full">
           Salvar QR
         </button>
       </form>
 
-      {notice ? <p className="mt-4 text-[0.95rem] text-[#166534] print:hidden">{notice}</p> : null}
+      {notice ? <p className="mt-4 success-text print:hidden">{notice}</p> : null}
     </>
   )
 }
@@ -675,21 +643,18 @@ function PrintQrPage({ qrPublic }: { qrPublic: QrDocument[] }) {
     <>
       <header className="mb-6 print:hidden">
         <div>
-          <p className="mb-3 text-[0.78rem] font-bold uppercase tracking-[0.12em] text-[#4f46e5]">
+          <p className="section-kicker">
             Impressão
           </p>
-          <h1 className="my-8 text-[clamp(2.1rem,4vw,3.2rem)] leading-[1.1] tracking-[-0.04em] text-[#0f172a] max-[1024px]:my-5 max-[1024px]:text-4xl">
+          <h1 className="heading max-[1024px]:my-5 max-[1024px]:text-4xl">
             QR Codes
           </h1>
         </div>
       </header>
 
-      <section className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-6 pt-3 print:grid-cols-[repeat(2,minmax(160px,1fr))] print:gap-4">
+      <section className="print-section print:grid-cols-[repeat(2,minmax(160px,1fr))] print:gap-4">
         {qrPublic.map((qr) => (
-          <div
-            key={qr.id}
-            className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-[#dfe7ef] bg-white p-[18px] text-center"
-          >
+          <div key={qr.id} className="print-card">
             <QRCodeSVG value={`${baseUrl}${qr.id}`} size={160} />
             <span className="font-bold">{qr.id}</span>
           </div>
