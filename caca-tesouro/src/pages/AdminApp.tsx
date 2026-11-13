@@ -14,9 +14,9 @@ interface AdminAppProps {
   setAccesses: React.Dispatch<React.SetStateAction<AccessRecord[]>>
 }
 
-import type { QrDocument, AccessRecord } from '../types'
+import type { QrDocument, AccessRecord, Team } from '../types'
 
-export function AdminApp({ qrPublic, setQrPublic, accesses, setAccesses }: AdminAppProps) {
+export function AdminApp({ qrPublic, setQrPublic, accesses, setAccesses, teams }: AdminAppProps & { teams: Team[] }) {
   const [user, setUser] = useState<User | null>(null)
   const [checking, setChecking] = useState(true)
 
@@ -52,7 +52,7 @@ export function AdminApp({ qrPublic, setQrPublic, accesses, setAccesses }: Admin
       <Routes>
         <Route
           index
-          element={<AdminDashboardPage qrPublic={qrPublic} accesses={accesses} />}
+                element={<AdminDashboardPage qrPublic={qrPublic} accesses={accesses} teams={teams} />}
         />
         <Route
           path="qrcodes"

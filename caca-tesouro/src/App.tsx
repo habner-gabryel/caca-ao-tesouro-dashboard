@@ -21,7 +21,7 @@ function App() {
       <Route path='/admin/login' element={<AdminLoginPage />} />
       <Route
         path='/admin/*'
-        element={<AdminApp qrPublic={qrPublic} setQrPublic={setQrPublic} accesses={accesses} setAccesses={setAccesses} />}
+        element={<AdminApp qrPublic={qrPublic} setQrPublic={setQrPublic} accesses={accesses} setAccesses={setAccesses} teams={initialTeams} />}
       />
     </Routes>
   )

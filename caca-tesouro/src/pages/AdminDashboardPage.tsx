@@ -1,14 +1,16 @@
 import { useMemo } from 'react'
-import type { QrDocument, AccessRecord } from '../types'
+import type { QrDocument, AccessRecord, Team } from '../types'
 import { QrCard } from '../components/QrCard'
 import { AccessList } from '../components/AccessList'
+import { TipsTable } from '../components/TipsTable'
 
 interface AdminDashboardPageProps {
   qrPublic: QrDocument[]
   accesses: AccessRecord[]
+  teams: Team[]
 }
 
-export function AdminDashboardPage({ qrPublic, accesses }: AdminDashboardPageProps) {
+export function AdminDashboardPage({ qrPublic, accesses, teams }: AdminDashboardPageProps) {
   const cards = useMemo(() => {
     return qrPublic.map((qr) => {
       const item = [...accesses]
@@ -30,11 +32,13 @@ export function AdminDashboardPage({ qrPublic, accesses }: AdminDashboardPagePro
         </div>
       </header>
 
-      <section className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-4 print:hidden">
+      <section className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-4 print:hidden mb-6">
         {cards.map(({ qr, lastAccess }) => (
           <QrCard key={qr.id} qr={qr} lastAccess={lastAccess} />
         ))}
       </section>
+
+      <TipsTable qrPublic={qrPublic} accesses={accesses} teams={teams} />
 
       <AccessList accesses={accesses} maxItems={6} title="Últimos acessos" />
     </>
